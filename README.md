@@ -3,9 +3,18 @@ Data and documentation for Group2(Wonder4): what actually happens in a BA/DA/ana
 
 # Introduction of Group2(Wonder4)
 
-## What the data are
-A corpus of interview experience posts for BA, DA and analytics
-internship roles. Each record captures: source, date posted,
-role title, company, firm type, interview round, question
-category (SQL / statistics / business case / product sense /
-behavioral / AI-tool), and whether AI-tool use was mentioned.
+## Track 3: What Actually Happens in a BA/DA Interview (2026)
+### What the data are
+
+
+### Where they came from
+
+
+### When they were collected
+
+### How to reproduce the pilot
+
+### Repository structure
+
+
+### Sampling note
