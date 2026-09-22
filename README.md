@@ -6,6 +6,7 @@ Introduction of Group2(Wonder4):
 ## Track 3: What Actually Happens in a BA/DA Interview (2026)
 ### What the data are
 #### Reddit
+The Reddit dataset consists of public Reddit posts discussing BA, DA, analytics internship, and related interview experiences. The dataset includes post titles, post text, publication dates, scores, URLs, and the search keyword used to retrieve each post.
 
 #### Nowcoder
 
