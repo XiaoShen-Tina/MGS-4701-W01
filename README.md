@@ -13,18 +13,29 @@ The Nowcoder dataset consists of public, self-reported interview-related posts r
 
 ### Where they came from
 #### Reddit
+The Reddit data were collected from two public Reddit communities, r/analytics and r/datascience, using the Reddit API through PRAW (Python Reddit API Wrapper). Posts were retrieved using predefined search terms related to BA, DA, analytics interviews, SQL, case interviews, and AI tools.
 
 #### Nowcoder
 The data came from the publicly accessible search interface of Nowcoder (牛客网). Nowcoder's search API was not directly called by our Python code. Instead, the search terms were entered manually in a normal browser session, and search-result pages were manually navigated while Chrome Developer Tools → Network recorded the data loaded by the browser. The Network logs were then exported as HAR files. Python was used only to read the locally saved HAR files, locate the stored search-result data, extract post-level records, and export them into structured CSV files.
 
 ### When they were collected
 #### Reddit
+The Reddit posts were collected in September 2026, with the post publication period set from January 1, 2023 to September 22, 2026. This time window was chosen to provide enough recent interview experiences for analysis while keeping the data relevant to current BA/DA recruitment practices. Using the same analysis period across Reddit and Nowcoder also makes the two platforms more comparable.
 
 #### Nowcoder
 The current Nowcoder pilot data were collected in September 2026. For each search query, up to 20 pages of search results were manually navigated and captured through the browser Network panel. The raw datasets retain historical posts returned by the Nowcoder search interface. For the main analysis, records will later be restricted to the selected analysis time window so that the Nowcoder and Reddit samples can be compared consistently.
 
 ### How to reproduce the pilot
 #### Reddit
+1. Install the required Python packages.
+2. Create Reddit API credentials.
+3. Store the credentials in a local .env file.
+4. Open reddit_data_collection.ipynb.
+5. Run the notebook from top to bottom.
+6. The notebook searches r/analytics and r/datascience using the predefined keywords.
+7. Posts outside the specified date range are removed.
+8. Duplicate posts are removed based on the post URL.
+9. The final dataset is saved as reddit_interview_pilot.csv.
 
 #### Nowcoder
 To reproduce the Nowcoder pilot:
@@ -43,6 +54,10 @@ The notebook processes the saved HAR file offline and does not send new requests
 
 ### Repository structure
 #### Reddit
+The Reddit component currently contains one Jupyter notebook and one pilot CSV dataset:
+- `reddit_data_collection.ipynb`
+- `reddit_interview_pilot.csv`
+The notebook contains the Reddit API connection, keyword-based post retrieval from r/analytics and r/datascience, date-range filtering, and duplicate removal used to create the pilot dataset.
 
 #### Nowcoder
 The Nowcoder component currently contains two Jupyter notebooks and two query-specific CSV datasets:
@@ -54,6 +69,6 @@ The notebooks contain the HAR parsing, record extraction, page-coverage checking
 
 ### Sampling note
 #### Reddit
-
+The Reddit data do not represent all BA, DA, or analytics interview experiences. They only reflect experiences that users chose to share publicly on the selected Reddit communities and that could be found using our search terms. Because the same post may appear under different keywords, duplicate URLs are removed during data cleaning. The keyword search may also return some less relevant posts or miss relevant posts that use different wording. We will review the collected posts before using them in the final analysis.
 #### Nowcoder
 The Nowcoder dataset is not a random sample of all BA/DA interviews. The records included in the pilot depend on the selected search terms, Nowcoder's search and ranking system, the interview experiences that users choose to share publicly, and the availability of historical posts. The same post may also appear in more than one search query. Duplicate records are therefore removed using stable identifiers, primarily UUID and content ID. A keyword-based rule is used for preliminary relevance screening. A post is marked as a candidate when its title or content contains at least one BA/DA/analytics-related role term and at least one interview-related term. This automated screening may contain false positives or miss relevant posts, so it will be followed by manual validation before the final analysis.
