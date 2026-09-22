@@ -6,7 +6,7 @@ Introduction of Group2(Wonder4):
 ## Track 3: What Actually Happens in a BA/DA Interview (2026)
 ### What the data are
 #### Reddit
-The Reddit dataset consists of public Reddit posts discussing BA, DA, analytics internship, and related interview experiences. The dataset includes post titles, post text, publication dates, scores, URLs, and the search keyword used to retrieve each post.
+The dataset consists of publicly available Reddit posts discussing analytics-related interview experiences. The observations are collected from r/datascience and r/analytics communities through Reddit API queries. The dataset includes both textual content and metadata. Textual variables (post titles and descriptions) provide qualitative information about candidates’ experiences and opinions, while metadata variables such as subreddit, date, and Reddit score provide contextual and engagement-related information. The final dataset contains 582 Reddit posts, with each row representing one post.
 
 #### Nowcoder
 The Nowcoder dataset consists of public, self-reported interview-related posts returned by the Nowcoder search interface. The current pilot uses two search queries: `数据分析面经` (Data Analyst Interview Experiences) and `商业分析面经` (Business Analyst Interview Experiences). The extracted data include the search query, search-result page and rank, post type, post ID and UUID, title, post content, author information, publication time, source URL, and a deduplication key. For the `数据分析面经` query, pages 1–20 produced 400 raw search records. After deduplication, 380 unique posts remained, and 275 were identified as preliminary BA/DA/analytics interview candidates. The relevance flag is used only for preliminary screening and is not treated as a final validated label.
