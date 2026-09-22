@@ -57,6 +57,7 @@ The notebook processes the saved HAR file offline and does not send new requests
 The Reddit component currently contains one Jupyter notebook and one pilot CSV dataset:
 - `reddit_data_collection.ipynb`
 - `reddit_interview_pilot.csv`
+
 The notebook contains the Reddit API connection, keyword-based post retrieval from r/analytics and r/datascience, date-range filtering, and duplicate removal used to create the pilot dataset.
 
 #### Nowcoder
@@ -65,6 +66,7 @@ The Nowcoder component currently contains two Jupyter notebooks and two query-sp
 - `nowcoder_HAR_FULL20_REPRODUCIBLE_PIPELINE_V2.ipynb`
 - `nowcoder_数据分析面经数据.csv`
 - `nowcoder_商业分析面经数据.csv`
+
 The notebooks contain the HAR parsing, record extraction, page-coverage checking, deduplication, and preliminary relevance-screening procedures used to produce the structured datasets.
 
 ### Sampling note
