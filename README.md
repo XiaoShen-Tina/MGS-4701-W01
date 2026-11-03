@@ -76,3 +76,15 @@ The notebooks contain the HAR parsing, record extraction, page-coverage checking
 The Reddit data do not represent all BA, DA, or analytics interview experiences. They only reflect experiences that users chose to share publicly on the selected Reddit communities and that could be found using our search terms. Because the same post may appear under different keywords, duplicate URLs are removed during data cleaning. The keyword search may also return some less relevant posts or miss relevant posts that use different wording. We will review the collected posts before using them in the final analysis.
 #### Nowcoder
 The Nowcoder dataset is not a random sample of all BA/DA interviews. The records included in the pilot depend on the selected search terms, Nowcoder's search and ranking system, the interview experiences that users choose to share publicly, and the availability of historical posts. The same post may also appear in more than one search query. Duplicate records are therefore removed using stable identifiers, primarily UUID and content ID. A keyword-based rule is used for preliminary relevance screening. A post is marked as a candidate when its title or content contains at least one BA/DA/analytics-related role term and at least one interview-related term. This automated screening may contain false positives or miss relevant posts, so it will be followed by manual validation before the final analysis.
+
+### Key Variables
+
+Our analysis focuses on five key dimensions:
+
+1. **Role Type:** Identifies whether the interview experience is associated with a Business Analyst (BA), Data Analyst (DA), or broader Analytics role.
+2. **Interview Round:** Examines the reported interview stages, number of rounds, and assessment formats.
+3. **Question Type / Skills Assessed:** Identifies the skills and competencies mentioned in interview experiences, including SQL, programming, statistics, machine learning, business cases, product metrics, BI and visualization, behavioral competencies, and project experience.
+4. **AI Assessment:** Identifies whether candidates explicitly report being assessed on their use or understanding of AI tools.
+5. **Interview Year:** Examines potential changes in reported interview requirements over time, using the year of the interview where available and distinguishing it from the post publication year.
+
+Detailed variable definitions and coding rules are provided in the Codebook.
