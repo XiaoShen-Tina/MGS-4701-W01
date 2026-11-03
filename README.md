@@ -4,6 +4,8 @@ Data and documentation for Group2(Wonder4): what actually happens in a BA/DA/ana
 Introduction of Group2(Wonder4):
 
 ## Track 3: What Actually Happens in a BA/DA Interview (2026)
+How do the skills and competencies reported in BA/DA interviews differ between Nowcoder and Reddit, and
+what do these differences imply for candidates' interview preparation?
 ### What the data are
 #### Reddit
 The dataset consists of publicly available Reddit posts discussing analytics-related interview experiences. The observations are collected from r/datascience and r/analytics communities through Reddit API queries. The dataset includes both textual content and metadata. Textual variables (post titles and descriptions) provide qualitative information about candidates’ experiences and opinions, while metadata variables such as subreddit, date, and Reddit score provide contextual and engagement-related information. The final dataset contains 582 Reddit posts, with each row representing one post.
