@@ -24,6 +24,18 @@ The initial search exports contained 795 records, with 743 unique posts after de
 
 The prepared classification dataset subsequently contained 944 records, including 394 Nowcoder posts and 550 Reddit posts. The intermediate selection from the original Nowcoder search results to these 394 candidates requires further documentation.
 
+## Data Description
+
+The Nowcoder dataset consists of publicly available, self-reported interview-related posts collected from Nowcoder (牛客网), a Chinese online career discussion platform. The dataset was collected using two search queries: `数据分析面经` (Data Analyst Interview Experiences) and `商业分析面经` (Business Analyst Interview Experiences).
+
+The initial collection contained 795 search records, including 400 records from the Data Analyst query and 395 from the Business Analyst query. After deduplication across the two queries, 743 unique posts remained. Applying the selected publication period (January 1, 2023–September 22, 2026) and basic data cleaning reduced the dataset to 394 records. The current analytical dataset contains 387 posts selected through subsequent relevance screening.
+
+The 387 posts were published between January 3, 2023, and September 19, 2026. The dataset includes 48 posts from 2023, 54 from 2024, 153 from 2025, and 132 from 2026. Each observation represents one unique post, which may describe multiple interview questions, assessment topics, or interview rounds.
+
+The standardized dataset contains five original variables: `keyword`, `title`, `text`, `date`, and `url`. Additional analytical variables were constructed using a structured codebook to capture interview relevance, reported technical skills, business analytical competencies, behavioral questions, project experience, AI-tool assessment, and interview characteristics.
+
+The current analytical dataset includes both model-predicted and training-set-derived coding labels. These labels have not all been independently validated through human coding. In addition, some Nowcoder records contain truncated text, which may limit the identification of interview topics. Therefore, the findings describe the content of selected publicly shared interview experiences rather than the full distribution of skills assessed in BA/DA interviews.
+
 ## Data Cleaning and Classification
 
 The data processing workflow includes:
