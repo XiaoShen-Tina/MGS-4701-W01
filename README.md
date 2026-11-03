@@ -77,6 +77,14 @@ The Reddit data do not represent all BA, DA, or analytics interview experiences.
 #### Nowcoder
 The Nowcoder dataset is not a random sample of all BA/DA interviews. The records included in the pilot depend on the selected search terms, Nowcoder's search and ranking system, the interview experiences that users choose to share publicly, and the availability of historical posts. The same post may also appear in more than one search query. Duplicate records are therefore removed using stable identifiers, primarily UUID and content ID. A keyword-based rule is used for preliminary relevance screening. A post is marked as a candidate when its title or content contains at least one BA/DA/analytics-related role term and at least one interview-related term. This automated screening may contain false positives or miss relevant posts, so it will be followed by manual validation before the final analysis.
 
+### Data Cleaning and Preparation
+
+The collected datasets were processed before the final analysis. The cleaning procedures included removing duplicate records, standardizing variable names and data formats, checking missing values, and aligning the publication period across the two platforms.
+
+For Nowcoder, duplicate posts were identified primarily using stable post identifiers, including UUID and content ID. For Reddit, duplicate posts were removed based on post URLs. The two datasets were then harmonized into a consistent structure, with a platform identifier added to distinguish Nowcoder and Reddit records.
+
+Preliminary relevance screening was followed by manual review using the established coding criteria. Only posts meeting the final inclusion criteria were retained for the main analysis.
+
 ### Key Variables
 
 Our analysis focuses on five key dimensions:
