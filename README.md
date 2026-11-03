@@ -4,8 +4,7 @@ Data and documentation for Group2(Wonder4): what actually happens in a BA/DA/ana
 Introduction of Group2(Wonder4):
 
 ## Track 3: What Actually Happens in a BA/DA Interview (2026)
-How do the skills and competencies reported in BA/DA interviews differ between Nowcoder and Reddit, and
-what do these differences imply for candidates' interview preparation?
+What skills and competencies are most frequently reported in BA/DA interview experiences on Nowcoder, and how do they vary across role types and interview years?
 ### What the data are
 #### Nowcoder
 The Nowcoder dataset consists of public, self-reported interview-related posts returned by the Nowcoder search interface. The current pilot uses two search queries: `数据分析面经` (Data Analyst Interview Experiences) and `商业分析面经` (Business Analyst Interview Experiences). The extracted data include the search query, search-result page and rank, post type, post ID and UUID, title, post content, author information, publication time, source URL, and a deduplication key. For the `数据分析面经` query, pages 1–20 produced 400 raw search records. After deduplication, 380 unique posts remained, and 275 were identified as preliminary BA/DA/analytics interview candidates. The relevance flag is used only for preliminary screening and is not treated as a final validated label.
