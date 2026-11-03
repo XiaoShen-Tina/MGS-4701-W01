@@ -1,68 +1,86 @@
-# MGS-4701-W01
-Data and documentation for Group2(Wonder4): what actually happens in a BA/DA/analytics interview in 2026.
+# MGS4701_Wonder4_AS2
+# BA/DA Interview Experience Analysis on Nowcoder
 
-Introduction of Group2(Wonder4):
+## Project Overview
 
-## Track 3: What Actually Happens in a BA/DA Interview (2026)
-What skills and competencies are most frequently reported in BA/DA interview experiences on Nowcoder, and how do they vary across role types and interview years?
-### What the data are
-#### Nowcoder
-The Nowcoder dataset consists of public, self-reported interview-related posts returned by the Nowcoder search interface. The current pilot uses two search queries: `数据分析面经` (Data Analyst Interview Experiences) and `商业分析面经` (Business Analyst Interview Experiences). The extracted data include the search query, search-result page and rank, post type, post ID and UUID, title, post content, author information, publication time, source URL, and a deduplication key. For the `数据分析面经` query, pages 1–20 produced 400 raw search records. After deduplication, 380 unique posts remained, and 275 were identified as preliminary BA/DA/analytics interview candidates. The relevance flag is used only for preliminary screening and is not treated as a final validated label.
+This project analyzes interview experiences shared on Nowcoder, a Chinese career discussion platform, to identify frequently reported interview topics and question types in Business Analytics (BA) and Data Analytics (DA) roles.
 
-### Where they came from
-#### Nowcoder
-The data came from the publicly accessible search interface of Nowcoder (牛客网). Nowcoder's search API was not directly called by our Python code. Instead, the search terms were entered manually in a normal browser session, and search-result pages were manually navigated while Chrome Developer Tools → Network recorded the data loaded by the browser. The Network logs were then exported as HAR files. Python was used only to read the locally saved HAR files, locate the stored search-result data, extract post-level records, and export them into structured CSV files.
+Our refined research question is:
 
-### When they were collected
-#### Nowcoder
-The current Nowcoder pilot data were collected in September 2026. For each search query, up to 20 pages of search results were manually navigated and captured through the browser Network panel. The raw datasets retain historical posts returned by the Nowcoder search interface. For the main analysis, records will later be restricted to the selected analysis time window so that the Nowcoder and Reddit samples can be compared consistently.
+**Among the selected Nowcoder posts reporting BA/DA interview experiences, which interview topics and question types are most frequently reported, and what evidence is provided of assessments of AI-tool proficiency?**
 
-### How to reproduce the pilot
-#### Nowcoder
-To reproduce the Nowcoder pilot:
-1. Open Nowcoder in a normal browser session.
-2. Search one of the predefined queries, such as `数据分析面经` or `商业分析面经`.
-3. Open Chrome Developer Tools → Network.
-4. Manually navigate through the search-result pages.
-5. Export the captured Network log as a `.har` file.
-6. Place the HAR file in the notebook directory or the designated `raw_har/` folder.
-7. Open the corresponding Jupyter notebook and specify the HAR filename and expected search query.
-8. Run the notebook from top to bottom.
-9. Check the page-coverage output and exported CSV files.
-The processing pipeline is:
-`Browser search → HAR export → Python reads HAR → extract stored search-result records → audit page coverage → deduplicate posts → preliminary relevance screening → export CSV`
-The notebook processes the saved HAR file offline and does not send new requests to the Nowcoder search API.
+The unit of analysis is an individual post. Each post may report multiple interview rounds and skill categories.
 
-### Repository structure
-#### Nowcoder
-The Nowcoder component currently contains two Jupyter notebooks and two query-specific CSV datasets:
-- `nowcoder_数据分析面经_FULL20_REPRODUCIBLE_PIPELINE_V3.ipynb`
-- `nowcoder_HAR_FULL20_REPRODUCIBLE_PIPELINE_V2.ipynb`
-- `nowcoder_数据分析面经数据.csv`
-- `nowcoder_商业分析面经数据.csv`
+## Data Collection
 
-The notebooks contain the HAR parsing, record extraction, page-coverage checking, deduplication, and preliminary relevance-screening procedures used to produce the structured datasets.
+The initial project collected candidate posts from Nowcoder and Reddit. Following a refinement of the research question, the final analysis focuses exclusively on Nowcoder.
 
-### Sampling note
-#### Nowcoder
-The Nowcoder dataset is not a random sample of all BA/DA interviews. The records included in the pilot depend on the selected search terms, Nowcoder's search and ranking system, the interview experiences that users choose to share publicly, and the availability of historical posts. The same post may also appear in more than one search query. Duplicate records are therefore removed using stable identifiers, primarily UUID and content ID. A keyword-based rule is used for preliminary relevance screening. A post is marked as a candidate when its title or content contains at least one BA/DA/analytics-related role term and at least one interview-related term. This automated screening may contain false positives or miss relevant posts, so it will be followed by manual validation before the final analysis.
+The Nowcoder data were collected in September 2026 using two search keywords:
 
-### Data Cleaning and Preparation
+- 商业分析面经 (Business Analyst Interview Experiences)
+- 数据分析面经 (Data Analyst Interview Experiences)
 
-The collected datasets were processed before the final analysis. The cleaning procedures included removing duplicate records, standardizing variable names and data formats, checking missing values, and aligning the publication period across the two platforms.
+The initial search exports contained 795 records, with 743 unique posts after deduplication across the two searches.
 
-For Nowcoder, duplicate posts were identified primarily using stable post identifiers, including UUID and content ID. For Reddit, duplicate posts were removed based on post URLs. 
+The prepared classification dataset subsequently contained 944 records, including 394 Nowcoder posts and 550 Reddit posts. The intermediate selection from the original Nowcoder search results to these 394 candidates requires further documentation.
 
-Preliminary relevance screening was followed by manual review using the established coding criteria. Only posts meeting the final inclusion criteria were retained for the main analysis.
+## Data Cleaning and Classification
 
-### Key Variables
+The data processing workflow includes:
 
-Our analysis focuses on five key dimensions:
+1. **Data Standardization:** Organize records into consistent fields, including title, text, date, URL, and platform.
+2. **Data Quality Checks:** Examine duplicate identifiers and URLs, missing fields, and text completeness.
+3. **Gold Set Labeling:** Use 150 labeled posts to establish reference classifications.
+4. **Supervised Model Training:** Train text classifiers to identify relevant interview posts and interview skill categories.
+5. **Automated Classification:** Apply trained models to the remaining 794 candidate posts.
+6. **Nowcoder Filtering:** Retain Nowcoder posts classified as `include`.
+7. **Quality Review:** Flag predictions and ambiguous records requiring further human verification.
 
-1. **Role Type:** Identifies whether the interview experience is associated with a Business Analyst (BA), Data Analyst (DA), or broader Analytics role.
-2. **Interview Round:** Examines the reported interview stages, number of rounds, and assessment formats.
-3. **Question Type / Skills Assessed:** Identifies the skills and competencies mentioned in interview experiences, including SQL, programming, statistics, machine learning, business cases, product metrics, BI and visualization, behavioral competencies, and project experience.
-4. **AI Assessment:** Identifies whether candidates explicitly report being assessed on their use or understanding of AI tools.
-5. **Interview Year:** Examines potential changes in reported interview requirements over time, using the year of the interview where available and distinguishing it from the post publication year.
+The preliminary cleaned dataset contains **387 Nowcoder posts**, including 68 records with supplied reference labels and 319 records classified by the supervised model.
 
-Detailed variable definitions and coding rules are provided in the Codebook.
+## Key Variables
+
+The analysis includes ten interview topic and skill indicators:
+
+`sql`, `programming`, `statistics`, `machine_learning`, `business_case`, `product_metrics`, `bi_visualization`, `behavioral`, `project_experience`, and `ai_tool_assessment`.
+
+Additional variables describe interview rounds, assessment formats, and publication dates.
+
+Skill categories are not mutually exclusive. A missing or unreported skill does not necessarily mean that the skill was absent from the actual interview.
+
+## Exploratory Data Analysis
+
+Among the 387 selected Nowcoder posts, the most frequently positively coded categories are:
+
+| Interview Category | Posts | Percentage |
+|---|---:|---:|
+| Project Experience | 228 | 58.9% |
+| Business Case | 160 | 41.3% |
+| Behavioral | 84 | 21.7% |
+
+For AI-tool assessment, two posts were positively labeled, while 319 records were classified as unknown. This limits conclusions about how frequently AI-tool proficiency is assessed.
+
+These results describe reported content under the existing labels, rather than validated frequencies across all BA/DA interviews.
+
+## Validation and Limitations
+
+The current dataset is preliminary. Of the 387 retained posts, 319 were classified automatically and have not all been independently verified.
+
+Five-fold cross-validation produced approximately 86% relevance accuracy, but a simple platform-based baseline achieved a similar result. Therefore, this metric alone does not establish reliable classification performance.
+
+Further limitations include incomplete post excerpts, search-based sampling, and uncertainty in some skill labels. The dataset should not be treated as fully human-validated until the relevant records have been reviewed.
+
+## Reproducibility
+
+The data processing workflow is documented in:
+
+`01_Nowcoder_Data_Cleaning_and_Classification.ipynb`
+
+Required input files:
+
+- `raw data.csv`
+- `Goldset.csv`
+
+The Notebook trains the classification models, generates validation diagnostics, predicts relevance labels, and exports the preliminary Nowcoder dataset.
+
+The original HAR-based data collection is a separate process and is not reproduced by this classification Notebook.
